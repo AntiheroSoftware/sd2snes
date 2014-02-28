@@ -507,6 +507,8 @@ select_item:
 	beq sel_is_file
 	cmp #$03
 	beq sel_is_spc
+	cmp #$05
+    beq sel_is_nsf
 	cmp #$04
 	beq sel_is_file
 	cmp #$80
@@ -525,6 +527,9 @@ sel_is_dir
 	jsr select_dir
 	bra select_item_cont
 sel_is_spc
+	jsr select_spc
+	bra select_item_cont
+sel_is_nsf
 	jsr select_spc
 	bra select_item_cont
 
@@ -665,6 +670,27 @@ wait_spc:
 	jsr spcplayer
 	jsr restore_screen
 	rts
+
+select_nfs:
+    dey
+    rep #$20 : .al
+    lda [dirptr_addr], y
+    and #$00ff
+    sta @MCU_PARAM+2
+    dey
+    dey
+    lda [dirptr_addr], y
+    sta @MCU_PARAM
+    sep #$20 : .as
+    lda #CMD_LOADNSF
+    sta @MCU_CMD
+wait_spc:
+    lda @MCU_CMD
+    cmp #$00
+    bne wait_spc
+    jsr nsfplayer
+    jsr restore_screen
+    rts
 
 filesel_key_x:
 	jsr mainmenu

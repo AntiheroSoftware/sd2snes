@@ -1,0 +1,7 @@
+#include "memmap.i65"
+
+; NSF Player
+; TODO insert credits
+
+spcplayer:
+    rts

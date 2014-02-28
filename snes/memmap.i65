@@ -34,6 +34,7 @@
 #define CMD_SYSINFO	$03
 #define CMD_LOADSPC	$05
 #define CMD_RESET	$06
+#define CMD_LOADNSF	$07
 
 #define SPC_DATA	$FD0000
 #define SPC_HEADER	$FE0000
