@@ -33,6 +33,7 @@
 #define SNES_CMD_LOADLAST  (4)
 #define SNES_CMD_LOADSPC   (5)
 #define SNES_CMD_RESET     (6)
+#define SNES_CMD_LOADNSF   (7)
 
 #define MENU_ERR_OK     (0)
 #define MENU_ERR_NODSP  (1)
