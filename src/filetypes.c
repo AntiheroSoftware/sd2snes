@@ -218,6 +218,7 @@ uint32_t scan_dir(char* path, FILINFO* fno_param, char mkdb, uint32_t this_dir_t
                   case TYPE_IPS:
                   case TYPE_SMC:
                   case TYPE_SPC:
+                  case TYPE_NSF:
                     /* write element pointer to current dir structure */
                     DBG_FS printf("d=%d Saving %lX to Address %lX  [file %s]\n", depth, db_tgt, dir_tgt, path);
                     if((db_tgt&0xffff) > ((0x10000-(sizeof(len) + pathlen + sizeof(buf)-1 + 1))&0xffff)) {
@@ -297,6 +298,9 @@ SNES_FTYPE determine_filetype(char* filename) {
   if(!strcasecmp(ext+1, "SPC")) {
     return TYPE_SPC;
   }
+  if(!strcasecmp(ext+1, "NSF")) {
+      return TYPE_NSF;
+    }
   return TYPE_UNKNOWN;
 }
 

@@ -42,7 +42,8 @@ typedef enum {
   TYPE_SMC,         /* 1 */
   TYPE_SRM,         /* 2 */
   TYPE_SPC,         /* 3 */
-  TYPE_IPS          /* 4 */
+  TYPE_IPS,         /* 4 */
+  TYPE_NFS          /* 5 */
 } SNES_FTYPE;
 
 
