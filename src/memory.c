@@ -389,6 +389,78 @@ uint32_t load_spc(uint8_t* filename, uint32_t spc_data_addr, uint32_t spc_header
   return (uint32_t)filesize;
 }
 
+uint32_t load_nsf(uint8_t* filename, uint32_t nsf_data_addr) {
+    DWORD filesize;
+    UINT bytes_read;
+    uint8_t data;
+    UINT j;
+
+    printf("%s\n", filename);
+
+    file_open(filename, FA_READ); /* Open NSF file */
+    if(file_res) return 0;
+    filesize = file_handle.fsize;
+
+//    set_mcu_addr(spc_data_addr);
+//    f_lseek(&file_handle, 0x100L); /* Load 64K data segment */
+//
+//    for(;;) {
+//      bytes_read = file_read();
+//      if (file_res || !bytes_read) break;
+//      FPGA_SELECT();
+//      FPGA_TX_BYTE(0x98);
+//      for(j=0; j<bytes_read; j++) {
+//        FPGA_TX_BYTE(file_buf[j]);
+//        FPGA_WAIT_RDY();
+//      }
+//      FPGA_DESELECT();
+//    }
+//
+//    file_close();
+//    file_open(filename, FA_READ); /* Reopen SPC file to reset file_getc state*/
+//
+//    set_mcu_addr(spc_header_addr);
+//    f_lseek(&file_handle, 0x0L); /* Load 256 bytes header */
+//
+//    FPGA_SELECT();
+//    FPGA_TX_BYTE(0x98);
+//    for (j = 0; j < 256; j++) {
+//      data = file_getc();
+//      FPGA_TX_BYTE(data);
+//      FPGA_WAIT_RDY();
+//    }
+//    FPGA_DESELECT();
+//
+//    file_close();
+//    file_open(filename, FA_READ); /* Reopen SPC file to reset file_getc state*/
+//
+//    set_mcu_addr(spc_header_addr+0x100);
+//    f_lseek(&file_handle, 0x10100L); /* Load 128 DSP registers */
+//
+//    FPGA_SELECT();
+//    FPGA_TX_BYTE(0x98);
+//    for (j = 0; j < 128; j++) {
+//      data = file_getc();
+//      FPGA_TX_BYTE(data);
+//      FPGA_WAIT_RDY();
+//    }
+//    FPGA_DESELECT();
+//    file_close(); /* Done ! */
+//
+//    /* clear echo buffer to avoid artifacts */
+//    uint8_t esa = sram_readbyte(spc_header_addr+0x100+0x6d);
+//    uint8_t edl = sram_readbyte(spc_header_addr+0x100+0x7d);
+//    uint8_t flg = sram_readbyte(spc_header_addr+0x100+0x6c);
+//    if(!(flg & 0x20) && (edl & 0x0f)) {
+//      int echo_start = esa << 8;
+//      int echo_length = (edl & 0x0f) << 11;
+//      printf("clearing echo buffer %04x-%04x...\n", echo_start, echo_start+echo_length-1);
+//      sram_memset(spc_data_addr+echo_start, echo_length, 0);
+//    }
+
+    return (uint32_t)filesize;
+}
+
 uint32_t load_sram_offload(uint8_t* filename, uint32_t base_addr) {
   set_mcu_addr(base_addr);
   UINT bytes_read;

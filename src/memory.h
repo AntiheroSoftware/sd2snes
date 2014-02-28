@@ -40,6 +40,8 @@
 #define SRAM_SPC_DATA_ADDR      (0xFD0000L)
 #define SRAM_SPC_HEADER_ADDR    (0xFE0000L)
 
+#define SRAM_NSF_DATA_ADDR      (0xFD0000L)
+
 #define SRAM_MENU_SAVE_ADDR     (0xFF0000L)
 #define SRAM_CMD_ADDR           (0xFF1000L)
 #define SRAM_PARAM_ADDR         (0xFF1004L)
@@ -55,6 +57,7 @@
 
 uint32_t load_rom(uint8_t* filename, uint32_t base_addr, uint8_t flags);
 uint32_t load_spc(uint8_t* filename, uint32_t spc_data_addr, uint32_t spc_header_addr);
+uint32_t load_nsf(uint8_t* filename, uint32_t nsf_data_addr);
 uint32_t load_sram(uint8_t* filename, uint32_t base_addr);
 uint32_t load_sram_offload(uint8_t* filename, uint32_t base_addr);
 uint32_t load_sram_rle(uint8_t* filename, uint32_t base_addr);

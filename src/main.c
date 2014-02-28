@@ -277,6 +277,13 @@ printf("PCONP=%lx\n", LPC_SC->PCONP);
           filesize = load_spc(file_lfn, SRAM_SPC_DATA_ADDR, SRAM_SPC_HEADER_ADDR);
           cmd=0; /* stay in menu loop */
           break;
+        case SNES_CMD_LOADNSF:
+          /* load NSF file */
+          get_selected_name(file_lfn);
+          printf("Selected name: %s\n", file_lfn);
+          filesize = load_nsf(file_lfn, SRAM_NSF_DATA_ADDR);
+          cmd=0; /* stay in menu loop */
+          break;
         case SNES_CMD_RESET:
           /* process RESET request from SNES */
           printf("RESET requested by SNES\n");
